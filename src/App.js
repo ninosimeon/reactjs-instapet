@@ -8,29 +8,29 @@ import { Redirect, Router } from '@reach/router'
 import { Context } from './Context'
 import { NotFound } from './pages/NotFound'
 
-const Favs = React.lazy(() => import('./pages/Favs'));
-const User = React.lazy(() => import('./pages/User'));
-const Detail = React.lazy(() => import('./pages/Detail'));
+const Favs = React.lazy(() => import('./pages/Favs'))
+const User = React.lazy(() => import('./pages/User'))
+const Detail = React.lazy(() => import('./pages/Detail'))
 
 export const App = () => {
-  const {isAuth} = useContext(Context);
+  const { isAuth } = useContext(Context)
   return (
-    <Suspense fallback={<div/>}>
-      <GlobalStyle/>
-      <Logo/>
+    <Suspense fallback={<div />}>
+      <GlobalStyle />
+      <Logo />
       <Router>
-        <NotFound default/>
-        <Home path='/'/>
-        <Home path='/pet/:categoryId'/>
-        <Detail path='/detail/:detailId'/>
-        {!isAuth && <NotRegisteredUser path='/login'/>}
-        {!isAuth && <Redirect from='/favs' to='/login' noThrow/>}
-        {!isAuth && <Redirect from='/user' to='/login' noThrow/>}
-        {isAuth && <Redirect from='/login' to='/'/>}
-        <Favs path='/favs'/>
-        <User path='/user'/>
+        <NotFound default />
+        <Home path='/' />
+        <Home path='/pet/:categoryId' />
+        <Detail path='/detail/:detailId' />
+        {!isAuth && <NotRegisteredUser path='/login' />}
+        {!isAuth && <Redirect from='/favs' to='/login' noThrow />}
+        {!isAuth && <Redirect from='/user' to='/login' noThrow />}
+        {isAuth && <Redirect from='/login' to='/' />}
+        <Favs path='/favs' />
+        <User path='/user' />
       </Router>
-      <NavBar/>
+      <NavBar />
     </Suspense>
   )
-};
+}
